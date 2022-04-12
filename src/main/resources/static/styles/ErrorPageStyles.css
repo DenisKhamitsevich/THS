@@ -1,0 +1,44 @@
+body {
+    width: 70%;
+    margin-left: 30%;
+    font-family: Comic_Sans_MS;
+    src: url(./assets/fonts/Comic_Sans_MS.ttf);
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(./assets/fonts/Comic_Sans_MS.ttf);
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+
+h1 {
+    margin: 100px 0 50px 120px;
+    font-size: 60px;
+}
+.exception_message{
+    font-size: 30px;
+}
+.prevButton {
+    width: 210px;
+    font-size: 30px;
+    margin: 60px 0 0 195px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.prevButton:active {
+    transform: translateY(4px);
+}
+.prevButton:hover{
+    opacity: 0.7;
+}
+#login-failed{
+    margin: 0 0 0 6%;
+}

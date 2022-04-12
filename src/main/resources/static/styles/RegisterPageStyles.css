@@ -1,0 +1,114 @@
+body {
+    width: auto;
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+}
+
+h1 {
+    font-size: 35px;
+    margin: 1%;
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+
+header {
+    display: flex;
+}
+
+.accountParagraph {
+    font-size: 20px;
+    margin: 30px 0 0 800px;
+    color: gray;
+}
+
+.signIn {
+    text-decoration: none;
+    color: blue;
+}
+.signIn:hover{
+    color:orange;
+}
+
+.flexDisplay {
+    display: flex;
+}
+
+.createAccountParagraph {
+    font-size: 35px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.651);
+}
+
+.registrationSection {
+    margin-left: 500px;
+    width: 600px;
+}
+
+.inputData {
+    height: 50px;
+    border: none;
+    border-bottom: 2px solid blue;
+    font-size: 25px;
+    outline: none;
+    padding-top: 40px;
+    margin-left: 80px;
+}
+
+.signUpButton {
+    width: 320px;
+    font-size: 30px;
+    margin: 60px 0 0 80px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+
+.signUpButton:active {
+    transform: translateY(4px);
+}
+.signUpButton:hover{
+    opacity: 0.7;
+}
+.invalid {
+    color: red;
+}
+
+#invalid_password_message {
+    display: none;
+    font-size: 25px;
+    margin-left: 90px;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+.password_must_contain {
+    color: black;
+}
+
+#invalid_upper {
+    margin-bottom: 0;
+}
+
+.right_set {
+    display: none;
+}
+
+.wrong_set {
+    display: inline;
+}

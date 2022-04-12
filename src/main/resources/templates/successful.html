@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/InfoPageStyles.css}" href="/static/styles/InfoPageStyles.css">
+    <title>Registration successful</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+</header>
+<form th:action="@{/login}">
+    <p class="info">Регистрация завершена успешно, теперь вы можете войти в аккаунт</p>
+    <input type="submit" value="На страницу входа" >
+</form>
+
+
+</body>
+</html>

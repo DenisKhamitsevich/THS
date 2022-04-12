@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THS | Sign up</title>
+    <link rel="stylesheet" th:href="@{/styles/RegisterPageStyles.css}">
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+    <p class="accountParagraph">Уже есть аккаунт? <a href="/login" class="signIn">Войти</a></p>
+</header>
+<div class="flexDisplay">
+    <div class="registrationSection">
+        <p class="createAccountParagraph">Создайте бесплатный аккаунт </p>
+        <form action="#" th:action="@{/register}" th:object="${userForm}" method="post">
+            <input type="text" placeholder="Имя" class="inputData" th:field="*{Name}" id="name" name="name" required>
+            <input type="email" placeholder="Email" class="inputData" th:field="*{email}" id="email" name="email" required>
+            <input type="text" placeholder="Пароль" class="inputData" id="password" name="password" th:field="*{password}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}" required>
+            <div id="invalid_password_message">
+                <p class="password_must_contain" id="invalid_password">Пароль должен содержать:</p>
+                <p class="invalid" id="invalid_length"> <span class="wrong_set" id="w_length_set"> &#9746;</span> <span class="right_set" id="r_length_set"> &#9745;</span> От 8 до 16 символов</p>
+                <p class="invalid" id="invalid_number"> <span class="wrong_set" id="w_number_set"> &#9746;</span> <span class="right_set" id="r_number_set"> &#9745;</span> Хотя бы одну цифру</p>
+                <p class="invalid" id="invalid_letter"> <span class="wrong_set" id="w_letter_set"> &#9746;</span> <span class="right_set" id="r_letter_set"> &#9745;</span> Хотя бы одну букву</p>
+                <p class="invalid" id="invalid_upper"> <span class="wrong_set" id="w_upper_set"> &#9746;</span> <span class="right_set" id="r_upper_set"> &#9745;</span> Хотя бы одну заглавную букву</p>
+            </div>
+            <input type="submit" value="Зарегистрироваться" class="signUpButton" >
+        </form>
+
+    </div>
+</div>
+<script type="text/javascript"  th:src="@{scripts/Validation.js}"></script>
+</body>
+</html>

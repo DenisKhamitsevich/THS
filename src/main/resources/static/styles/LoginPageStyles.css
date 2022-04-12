@@ -1,0 +1,80 @@
+body {
+    width: 70%;
+    margin-left: 30%;
+    font-family: Comic_Sans_MS;
+    src: url(./assets/fonts/Comic_Sans_MS.ttf);
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(./assets/fonts/Comic_Sans_MS.ttf);
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+
+h1 {
+    margin: 100px 0 0 120px;
+    font-size: 60px;
+}
+
+.accountParagraph {
+    font-size: 20px;
+    margin-left: 140px;
+    color: gray;
+}
+
+.signUp {
+    color: blue;
+    text-decoration: none;
+}
+.signUp:hover{
+    color: orange;
+}
+
+.emailParagraph {
+    font-size: 20px;
+    margin: 40px 0 0 90px;
+}
+
+.email {
+    height: 40px;
+    width: 400px;
+    margin: 10px 0 0 90px;
+    border: 1px solid lightblue;
+    outline: none;
+    font-size: 20px;
+}
+
+.passwordParagraph {
+    font-size: 20px;
+    margin: 40px 0 0 90px;
+}
+
+.password {
+    height: 40px;
+    width: 400px;
+    margin: 10px 500px 0 90px;
+    border: 1px solid lightblue;
+    outline: none;
+    font-size: 20px;
+}
+
+.login {
+    width: 407px;
+    font-size: 30px;
+    margin: 50px 0 0 90px;
+    color: white;
+    background-color: orange;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+.login:active {
+    transform: translateY(4px);
+}
+.login:hover{
+    opacity:0.7;
+}

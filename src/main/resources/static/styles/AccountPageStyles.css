@@ -1,0 +1,107 @@
+body {
+    width: auto;
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+}
+h1 {
+    font-size: 35px;
+    margin: 1%;
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+
+header{
+    display: flex;
+    border-bottom: 1px solid black;
+    padding-bottom: 1%;
+}
+.customButton {
+    width: 100%;
+    height: 30px;
+    font-size: 17px;
+    margin: 2% 0 0 0;
+    color: white;
+    background-color: orange;
+    border: none;
+    outline: none;
+}
+.customButton:hover{
+    opacity:0.7;
+}
+.addItemForm{
+    margin:2% 0 0 25%;
+}
+.deleteItemForm{
+    margin:2% 0 0 1%;
+}
+.logoutForm{
+    margin:2% 0 0 25%;
+}
+.settingsText{
+    font-size: 32px;
+    margin: 1% 0 0 45%;
+}
+.settingsItem {
+    height: 40px;
+    width: 300px;
+    margin: 1% 50% 0 40%;
+    border: 1px solid lightblue;
+    outline: none;
+    font-size: 20px;
+}
+.settingsItemText{
+    font-size: 25px;
+    margin: 1% 40% 0 48%;
+}
+#passwordText{
+    margin-left: 45%;
+}
+#changePasswordText{
+    margin:2% 0 0 43%;
+}
+.saveButton{
+    width: 100px;
+    margin: 1% 40% 0 47%;
+}
+.invalid {
+    color: red;
+}
+
+#invalid_password_message {
+    display: none;
+    font-size: 25px;
+    margin-left: 40%;
+}
+
+.valid {
+    color: green;
+}
+
+.invalid {
+    color: red;
+}
+
+.password_must_contain {
+    color: black;
+}
+
+#invalid_upper {
+    margin-bottom: 0;
+}
+
+.right_set {
+    display: none;
+}
+
+.wrong_set {
+    display: inline;
+}
