@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+import java.util.Optional;
+
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
@@ -20,6 +23,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(username).orElseThrow(()->new UsernameNotFoundException("Email not found!"));
     }
 
+    public User loadUserById(Long id)
+    {
+        return userRepository.getById(id);
+    }
+
 
     public void SignUpUser(User user){
         boolean exists=userRepository.findByEmail(user.getEmail()).isPresent();
@@ -30,6 +38,26 @@ public class UserService implements UserDetailsService {
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
         String password=encoder.encode(user.getPassword());
         user.setPassword(password);
+        userRepository.save(user);
+    }
+
+    public void UpdateNameAndEmail(Long id, String newEmail, String name) {
+        User user = userRepository.getById(id);
+
+        if ((userRepository.findByEmail(newEmail).isPresent())&&(!Objects.equals(newEmail, user.getEmail()))) {
+            throw new RegistrationException("Пользователь с таким email уже существует!");
+        }
+        user.setEmail(newEmail);
+        user.setName(name);
+        userRepository.save(user);
+    }
+
+    public void UpdatePassword(Long id, String newPassword)
+    {
+        User user = userRepository.getById(id);
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String encodedPassword=encoder.encode(newPassword);
+        user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 }
