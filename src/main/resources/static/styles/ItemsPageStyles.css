@@ -1,0 +1,58 @@
+body {
+    width: auto;
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+}
+h1 {
+    font-size: 35px;
+    margin: 1%;
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+.addItemText{
+    font-size: 25px;
+    margin: 2% 30% 0% 45%;
+}
+.customButton {
+    width: 100px;
+    height: 30px;
+    font-size: 17px;
+    margin: 2% 30% 0 47%;
+    color: white;
+    background-color: orange;
+    border: none;
+    outline: none;
+}
+.customButton:hover{
+    opacity:0.7;
+}
+.addItemField {
+    height: 40px;
+    width: 300px;
+    margin: 2% 20% 0 40%;
+    border: 1px solid lightblue;
+    outline: none;
+    font-size: 20px;
+}
+.loadImageField{
+    margin: 2% 30% 0 42%;
+    font-size: 15px;
+}
+#description{
+    height: 200px;
+    width: 40%;
+    margin-left: 30%;
+}
+input[type=number]::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+}

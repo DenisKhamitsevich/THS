@@ -3,24 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}" href="/static/styles/AccountPageStyles.css">
+    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}" >
     <title>Account</title>
 </head>
 <body>
 <header>
     <h1>THS-<span class="h1_market">market</span></h1>
-    <form method="get" class="addItemForm">
-        <input type="submit" class="customButton" value="Добавить товар">
-    </form>
-    <form method="get" class="deleteItemForm">
-        <input type="submit" class="customButton" value="Удалить товар">
+    <form  class="addItemForm" th:action="@{/change-items}">
+        <input type="submit" class="customButton" value="Добавить/удалить товар">
     </form>
     <form method="post" class="logoutForm" th:action="@{/logout}">
         <input type="submit" class="customButton" value="Выйти" >
     </form>
 </header>
 <p class="settingsText">Настройки</p>
-<form method="post" th:action="@{/saveNameAndEmail}" th:object="${user}" >
+<form method="post" th:action="@{/account}" th:object="${user}" >
     <p class="settingsItemText">Имя</p>
     <input type="text" class="settingsItem" th:field="*{name}">
     <p class="settingsItemText">Email</p>

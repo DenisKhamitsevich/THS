@@ -64,5 +64,21 @@ public class AuthenticationController {
         return "login-failed";
     }
 
+    @GetMapping("prev")
+    public String getPrev(HttpServletRequest request)
+    {
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
+    }
+
+    @PostMapping("account")
+    public String saveNameAndEmail(@ModelAttribute("user") User user)
+    {
+        User loggedUser = DefaultController.getLoggedUser();
+        Long id=loggedUser.getId();
+        userService.UpdateNameAndEmail(id,user.getEmail(),user.getName());
+        return "redirect:account";
+    }
+
 
 }
