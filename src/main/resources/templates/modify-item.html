@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/ItemsPageStyles.css}" href="/static/styles/ItemsPageStyles.css">
+    <title>Modify item</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+</header>
+
+<form th:action="@{/change-items}" class="prevPageForm">
+    <input type="submit" value="Назад" class="customButton" id="prevButton">
+</form>
+
+<div th:unless="${item}">
+    <p class="noSuchItemText">Товара с данным ID не существует!</p>
+</div>
+
+<div th:if="${item}">
+    <form method="post" th:object="${item}" th:action="@{/changeItem}" enctype="multipart/form-data">
+        <p class="changeItemText">Название:</p>
+        <input type="text" class="addItemField" maxlength="255" th:field="*{title}" placeholder="Название" required>
+        <div><img th:src="${item.image}"></div>
+        <input th:field="*{id}" class="displayNone">
+        <p class="changeItemText" id="newImageText">Новое изображение:</p>
+        <input type="file" name="file" accept=".jpg,.png,.jpeg" class="loadImageField" >
+        <p class="changeItemText">Описание:</p>
+        <textarea type="text" id="description" class="addItemField" th:field="*{description}" maxlength="3000" placeholder="Описание" required></textarea>
+        <p class="changeItemText" id="newPriceText">Цена:</p>
+        <input type="number" class="addItemField" placeholder="Цена" th:field="*{price}"  required>
+        <input type="submit" class="customButton" value="Сохранить">
+    </form>
+</div>
+
+
+</body>
+</html>

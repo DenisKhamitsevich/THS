@@ -136,6 +136,14 @@ public class DefaultController {
         return "result";
     }
 
+    @PostMapping("changeItem")
+    public String changeItem(@RequestParam MultipartFile file, @ModelAttribute("item") Item item,Model model)
+    {
+        itemService.updateItem(file,item);
+        model.addAttribute("item",new Item());
+        return "change-items";
+    }
+
     @PostMapping("deleteItem")
     public String deleteItem(@RequestParam Long id, Model model) {
         if (itemService.deleteItem(id))
@@ -143,6 +151,17 @@ public class DefaultController {
         else
             model.addAttribute("result", "Товара с данным ID не существует!");
         return "result";
+    }
+
+    @GetMapping("getItem")
+    public String getChangeItemPage(@RequestParam Long id, Model model)
+    {
+        if(itemService.itemExists(id))
+        {
+            Item item=itemService.getItemById(id);
+            model.addAttribute("item",item);
+        }
+        return "modify-item";
     }
 
     public static User getLoggedUser() {

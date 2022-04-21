@@ -1,6 +1,5 @@
 package com.market.ths.item;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +33,29 @@ public class ItemService {
         item.setImage("/uploads/"+fileName);
         itemRepository.save(item);
     }
+
+    public void updateItem(MultipartFile file, Item item){
+        Item prev=itemRepository.getById(item.getId());
+        if(!file.getOriginalFilename().equals(""))
+        {
+            String fileName = itemRepository.count()+"_"+StringUtils.cleanPath(file.getOriginalFilename());
+            Path uploadPath = Paths.get("uploads/");
+            try (InputStream inputStream = file.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioe) {
+
+            }
+            prev.setImage("/uploads/"+fileName);
+        }
+        prev.setDescription(item.getDescription());
+        prev.setPrice(item.getPrice());
+        prev.setTitle(item.getTitle());
+        itemRepository.save(prev);
+    }
+
+
+
     public boolean deleteItem(Long id)
     {
         if(!itemRepository.existsById(id))
@@ -60,5 +82,10 @@ public class ItemService {
     public Item getItemById(Long id)
     {
         return itemRepository.getById(id);
+    }
+
+    public Boolean itemExists(Long id)
+    {
+        return itemRepository.existsById(id);
     }
 }
