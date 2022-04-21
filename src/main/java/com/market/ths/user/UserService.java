@@ -8,7 +8,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -29,7 +28,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public void SignUpUser(User user){
+    public void signUpUser(User user){
         boolean exists=userRepository.findByEmail(user.getEmail()).isPresent();
         if(exists)
         {
@@ -41,7 +40,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void UpdateNameAndEmail(Long id, String newEmail, String name) {
+    public void updateNameAndEmail(Long id, String newEmail, String name) {
         User user = userRepository.getById(id);
 
         if ((userRepository.findByEmail(newEmail).isPresent())&&(!Objects.equals(newEmail, user.getEmail()))) {
@@ -52,7 +51,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void UpdatePassword(Long id, String newPassword)
+    public void updatePassword(Long id, String newPassword)
     {
         User user = userRepository.getById(id);
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();

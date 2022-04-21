@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/ItemPageStyles.css}" href="../static/styles/ItemPageStyles.css">
+    <title>Item</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+    <form th:action="@{/account}"class="loginForm">
+        <input type="submit" class="customButton" id="loginButton" value="Войти">
+    </form>
+</header>
+<form th:action="@{/catalog}" class="prevPageForm">
+    <input type="submit" value="Назад" class="customButton" id="prevButton">
+</form>
+
+
+<div class="itemValue">
+    <div class="itemTitle"><span  th:text="${item.title}"> title </span></div>
+    <div><img th:src="${item.image}"></div>
+    <div class="itemId"><span th:text="'ID:'+${item.id}">id</span></div>
+    <div  class="itemDescription"><span th:text="'Описание:'+${item.description}"> description </span></div>
+    <div class="itemPrice"><span  th:text="'Цена:'+${item.price}"> price </span></div>
+</div>
+
+
+</body>
+</html>

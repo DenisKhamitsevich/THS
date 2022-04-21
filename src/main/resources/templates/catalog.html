@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/CatalogPageStyles.css}" href="../static/styles/CatalogPageStyles.css">
+    <title>THS-market</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+    <form class="searchForm" action="/search">
+        <input class="searchField" type="search" name="search" placeholder="Искать в каталоге">
+        <input type="submit" class="customButton" value="Поиск">
+    </form>
+    <form th:action="@{/account}"class="loginForm">
+        <input type="submit" class="customButton" id="loginButton" value="Войти">
+    </form>
+</header>
+
+<p class="catalogText">Каталог</p>
+
+<div th:if="${filters.get('isFilterActive')=='true'}" class="activeFiltersSection">
+    <div th:unless="${filters.get('minPrice')=='0'}" class="activeFilter">
+        <p>Стоимость от: </p>
+        <p th:text="${filters.get('minPrice')}"></p>
+    </div>
+    <div th:unless="${filters.get('maxPrice')=='1000000000'}" class="activeFilter">
+        <p>Стоимость до: </p>
+        <p th:text="${filters.get('maxPrice')}"></p>
+    </div>
+    <div th:unless="${filters.get('search')==''}" class="activeFilter">
+        <p>Поиск: </p>
+        <p th:text="${filters.get('search')}"></p>
+    </div>
+
+<form th:action="@{/clearSearch}" class="clearSearchForm">
+    <input type="submit"  class="customButton" id="clearSearch" value="Очистить">
+</form>
+</div>
+
+
+
+
+<div class="flex">
+    <form class="filtersForm" th:action="@{/filters}">
+        <p class="filtersText">Фильтры</p>
+        <label class="priceText">Стоимость:</label>
+        <input type="number" name="min_price"class="filtersItem" placeholder="от">
+        <input type="number" name="max_price" class="filtersItem" placeholder="до">
+        <input type="submit"  class="customButton" id="filtersButton"value="Показать">
+    </form>
+
+    <div class="items">
+        <div th:if="${values.empty}" >
+            <p class="noItemsText">Нет товаров!</p>
+        </div>
+
+
+        <div class="item" th:each="item : ${values}"  th:onclick="|window.location.href='/item/${item.id}'|">
+            <div><span class="itemTitle" th:text="${item.title}"> title </span></div>
+            <div class="flex">
+                <div><img th:src="${item.image}"></div>
+                <div  class="itemDescription"><span th:text="${item.description}"> description </span></div>
+                <div class="itemPrice"><span  th:text="${item.price}"> price </span></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="navigationButtons">
+    <div th:if="${prevPage}">
+        <form th:action="@{/prevPage}">
+            <input type="submit" class="customButton" id="prevPageButton" value="Предыдущая">
+        </form>
+    </div>
+
+    <div th:if="${nextPage}">
+        <form th:action="@{/nextPage}">
+            <input type="submit" class="customButton" id="nextPageButton" value="Следующая">
+        </form>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+</html>

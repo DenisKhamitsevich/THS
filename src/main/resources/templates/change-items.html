@@ -13,7 +13,7 @@
     <input type="file" name="file" accept=".jpg,.png,.jpeg" class="loadImageField" placeholder="Загрузить изображение" required>
     <input type="text" class="addItemField" maxlength="255" th:field="*{title}" placeholder="Название" required>
     <textarea type="text" id="description" class="addItemField" th:field="*{description}" maxlength="3000" placeholder="Описание" required></textarea>
-    <input type="number" class="addItemField" placeholder="Цена" th:field="*{price}" inputmode="numeric" required>
+    <input type="number" class="addItemField" placeholder="Цена" th:field="*{price}"  required>
     <input type="submit" class="customButton" value="Сохранить">
 </form>
 

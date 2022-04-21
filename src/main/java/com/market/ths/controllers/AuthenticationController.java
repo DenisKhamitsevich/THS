@@ -5,7 +5,6 @@ import com.market.ths.user.User;
 import com.market.ths.user.UserRole;
 import com.market.ths.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +43,7 @@ public class AuthenticationController {
     public String Register(@ModelAttribute("userForm") User user)
     {
         user.setRole(UserRole.CUSTOMER);
-        userService.SignUpUser(user);
+        userService.signUpUser(user);
         return "successful";
     }
 
@@ -76,7 +75,7 @@ public class AuthenticationController {
     {
         User loggedUser = DefaultController.getLoggedUser();
         Long id=loggedUser.getId();
-        userService.UpdateNameAndEmail(id,user.getEmail(),user.getName());
+        userService.updateNameAndEmail(id,user.getEmail(),user.getName());
         return "redirect:account";
     }
 

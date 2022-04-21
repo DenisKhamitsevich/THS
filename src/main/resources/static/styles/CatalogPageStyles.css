@@ -1,0 +1,152 @@
+body {
+    width: auto;
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+
+}
+
+@font-face {
+    font-family: Comic_Sans_MS;
+    src: url(assets/fonts/Comic_Sans_MS.ttf);
+}
+h1 {
+    font-size: 35px;
+    margin: 1%;
+}
+
+.h1_market {
+    color: orange;
+    font-style: italic;
+}
+
+header{
+    display: flex;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1%;
+}
+.searchField{
+    height: 30px;
+    width: 70%;
+    border: 1px solid orange;
+    outline: none;
+    font-size: 15px;
+}
+.searchForm{
+    width: 30%;
+    margin: 1% 0 0 20%;
+}
+
+.customButton {
+    width: 20%;
+    height: 30px;
+    font-size: 17px;
+    margin: 1% 5% 0 0;
+    color: white;
+    background-color: orange;
+    border: none;
+    outline: none;
+}
+.customButton:hover{
+    opacity:0.7;
+}
+#loginButton{
+    background-color: orange;
+    border-radius: 10px;
+    height: 40px;
+    width:100%;
+}
+.loginForm{
+    margin: 1% 5% 0 23%;
+}
+img{
+    width: 150px;
+    height: 150px;
+}
+.catalogText{
+    font-size: 27px;
+    margin: 2% 30% 0 45%;
+}
+.items{
+    margin:2% 5% 0 5%;
+    width:80% ;
+}
+.item{
+    margin:3% 0 0 0;
+}
+.flex{
+    display: flex;
+    margin-top:1%;
+}
+.itemTitle{
+    font-size: 20px;
+    padding-left: 30%;
+}
+.itemDescription{
+    font-size: 15px;
+    padding: 1% 5% 0 5%;
+    width: 60%;
+}
+.itemPrice{
+    font-size: 20px;
+}
+
+.noItemsText{
+    font-size: 26px;
+    margin: 10% 10% 0 28%;
+}
+#prevPageButton{
+    width: 120px;
+    position: absolute;
+    left:40%;
+}
+#nextPageButton{
+    width: 120px;
+    margin-left: 5%;
+    position: absolute;
+    left:45%;
+}
+.navigationButtons{
+    display: flex;
+    margin: 3%;
+}
+input[type=number]::-webkit-inner-spin-button
+{
+    -webkit-appearance: none;
+}
+.filtersForm{
+    width: 19%;
+    height: 180px;
+    font-size: 16px;
+    margin-left: 1%;
+    border-bottom: 1px solid gray;
+    border-right: 1px solid gray;
+}
+.filtersText{
+    font-size: 20px;
+    margin:0 0 10% 30%;
+}
+.filtersItem{
+    width: 45%;
+}
+.priceText{
+    margin-right: 50%;
+}
+#filtersButton{
+    margin:13% 10% 0 28%;
+    width: 85px;
+}
+#clearSearch{
+    width: 85px;
+}
+.clearSearchForm{
+    margin:1% 0 0 5%;
+}
+.activeFilter{
+    display: flex;
+    font-size: 17px;
+    margin: 0 1% 0 3%;
+}
+.activeFiltersSection{
+    display: flex;
+    margin: 0 3% 0 19%;
+}
