@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/CatalogPageStyles.css}" href="../static/styles/CatalogPageStyles.css">
+    <title>Basket</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+    <form th:action="@{/account}"class="loginForm" id="basketLoginForm">
+        <input type="submit" class="customButton" id="loginButton" value="Войти">
+    </form>
+</header>
+<div class="flex">
+    <form th:action="@{/catalog}" class="prevPageForm">
+        <input type="submit" value="Назад" class="customButton" id="prevButton">
+    </form>
+    <p class="catalogText" id="basketText">Корзина</p>
+</div>
+
+
+<div class="items" id="basketItems">
+    <div th:if="${items.empty}" >
+        <p class="noItemsText" id="noItemsBasket">Нет товаров!</p>
+    </div>
+
+    <div class="item" th:each="item : ${items}">
+        <div><span class="itemTitle" th:text="${item.title}"> title </span></div>
+        <div class="flex">
+            <div><img th:src="${item.image}"></div>
+            <div  class="itemDescription"><span th:text="${item.description}"> description </span></div>
+            <div class="itemPrice"><span  th:text="${item.price}"> price </span></div>
+            <form method="post" th:action="@{/deleteFromBasket}">
+                <input th:value="${item.id}" class="displayNone" name="id">
+                <input type="submit"  value="Удалить" class="customButton" id="deleteFromBasket" >
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<div th:unless="${items.empty}" class="saveOrderSection">
+    <p class="totalPrice" th:text="'Итоговая стоимость: '+${price}"></p>
+    <form method="post" th:action="@{/saveOrder}" >
+        <input type="submit" value="Оформить заказ" class="customButton" id="saveOrderButton">
+    </form>
+</div>
+
+
+
+</body>
+</html>

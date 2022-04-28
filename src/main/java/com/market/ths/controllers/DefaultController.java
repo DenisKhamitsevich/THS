@@ -13,18 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes(value = {"page", "filters"})
+@SessionAttributes(value = {"page", "filters","order"})
 public class DefaultController {
     private final UserService userService;
     private final ItemService itemService;
-    private final Integer amountOfItemsOnPage = 5;
+    private final Integer amountOfItemsOnPage = 10;
 
     @Autowired
     public DefaultController(UserService userService, ItemService itemService) {
@@ -176,13 +173,15 @@ public class DefaultController {
         if (!model.containsAttribute("page"))
             model.addAttribute("page", 0);
         if (!model.containsAttribute("filters")) {
-            HashMap<String, String> result = new HashMap<String, String>();
+            HashMap<String, String> result = new HashMap<>();
             result.put("search", "");
             result.put("minPrice", "0");
             result.put("maxPrice", "1000000000");
             result.put("isFilterActive", "false");
             model.addAttribute("filters", result);
         }
+        if(!model.containsAttribute("order"))
+            model.addAttribute("order",new HashSet<Long>());
 
     }
 

@@ -79,3 +79,11 @@ img{
     margin-top: 4%;
     text-align: center;
 }
+.displayNone{
+    display: none;
+}
+#addToBasket{
+    width:130px;
+    margin:2% 5% 0 46%;
+    font-size: 25px;
+}

@@ -24,6 +24,10 @@
     <div  class="itemDescription"><span th:text="'Описание:'+${item.description}"> description </span></div>
     <div class="itemPrice"><span  th:text="'Цена:'+${item.price}"> price </span></div>
 </div>
+<form method="post" th:action="@{/addToBasket}">
+    <input th:value="${item.id}" class="displayNone" name="id">
+    <input type="submit"  value="В корзину" class="customButton" id="addToBasket" >
+</form>
 
 
 </body>

@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ItemService {
@@ -64,9 +65,9 @@ public class ItemService {
         return true;
     }
 
-    public List<Item> getItems()
+    public List<Item> getItemsById(Set<Long> ids)
     {
-        List<Item> result=itemRepository.findAll();
+        List<Item> result=itemRepository.findAllById(ids);
         return result;
     }
 

@@ -17,7 +17,15 @@
     </form>
 </header>
 
-<p class="catalogText">Каталог</p>
+<div class="flex">
+    <p class="catalogText">Каталог</p>
+    <div class="basketSection" th:onclick="|window.location.href='/basket'|">
+        <img th:src="@{styles/assets/images/basket.png}" id="basket">
+        <p th:text="${order.size()}" class="orderSize"></p>
+    </div>
+</div>
+
+
 
 <div th:if="${filters.get('isFilterActive')=='true'}" class="activeFiltersSection">
     <div th:unless="${filters.get('minPrice')=='0'}" class="activeFilter">
@@ -55,13 +63,17 @@
             <p class="noItemsText">Нет товаров!</p>
         </div>
 
-
         <div class="item" th:each="item : ${values}"  th:onclick="|window.location.href='/item/${item.id}'|">
             <div><span class="itemTitle" th:text="${item.title}"> title </span></div>
             <div class="flex">
                 <div><img th:src="${item.image}"></div>
                 <div  class="itemDescription"><span th:text="${item.description}"> description </span></div>
                 <div class="itemPrice"><span  th:text="${item.price}"> price </span></div>
+                <form method="post" th:action="@{/addToBasket}">
+                    <input th:value="${item.id}" class="displayNone" name="id">
+                    <input type="submit"  value="В корзину" class="customButton" id="addToBasket" >
+                </form>
+
             </div>
 
         </div>

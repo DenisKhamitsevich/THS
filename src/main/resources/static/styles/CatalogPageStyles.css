@@ -64,10 +64,10 @@ img{
 }
 .catalogText{
     font-size: 27px;
-    margin: 2% 30% 0 45%;
+    margin: 1% 30% 0 45%;
 }
 .items{
-    margin:2% 5% 0 5%;
+    margin:0 5% 0 5%;
     width:80% ;
 }
 .item{
@@ -88,6 +88,7 @@ img{
 }
 .itemPrice{
     font-size: 20px;
+    width: 10%;
 }
 
 .noItemsText{
@@ -149,4 +150,64 @@ input[type=number]::-webkit-inner-spin-button
 .activeFiltersSection{
     display: flex;
     margin: 0 3% 0 19%;
+}
+#addToBasket{
+    width: 70px;
+    font-size: 13px;
+    margin-left: 25%;
+}
+.basketSection{
+    margin:1% 1% 0 9%;
+    cursor: pointer;
+}
+#basket{
+    width: 52px;
+    height: 49px;
+}
+.displayNone{
+    display: none;
+}
+.orderSize{
+    position: relative;
+    bottom: 22px;
+    left: 45px;
+    font-size: 20px;
+    color: red;
+    margin: 0;
+}
+#basketItems{
+    margin-left: 17%;
+}
+#noItemsBasket{
+    margin-left: 34%;
+}
+#basketLoginForm{
+    margin-left: 70%;
+}
+.prevPageForm{
+    margin-left: 2%;
+}
+#prevButton{
+    width: 70px;
+}
+#basketText{
+    margin-left: 39%;
+}
+#deleteFromBasket{
+    width: 70px;
+    font-size: 13px;
+    margin-left: 0;
+}
+.totalPrice{
+    margin: 1% 5% 0 66%;
+    font-size: 25px;
+}
+#saveOrderButton{
+    width: 210px;
+    font-size: 25px;
+    margin: 2% 5% 0 43%;
+}
+.saveOrderSection{
+    border-top: 1px solid gray;
+    margin-top: 4%;
 }
