@@ -38,8 +38,8 @@ header{
 }
 #loginButton{
     background-color: orange;
-    border-radius: 10px;
-    height: 40px;
+    border-radius: 8px;
+    height: 32px;
     width:100%;
 }
 .loginForm{

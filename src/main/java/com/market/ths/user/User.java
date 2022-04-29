@@ -1,20 +1,21 @@
 package com.market.ths.user;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Table(name = "appuser")
@@ -38,8 +39,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority simpleGrantedAuthority=new SimpleGrantedAuthority(role.name());
-        return Collections.singletonList(simpleGrantedAuthority);
+        List<GrantedAuthority> list = new ArrayList<>();
+        list.add(new SimpleGrantedAuthority("ROLE_" + role));
+        return list;
     }
 
     @Override
@@ -76,5 +78,18 @@ public class User implements UserDetails {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        User user = (User) o;
+        return id != null && Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

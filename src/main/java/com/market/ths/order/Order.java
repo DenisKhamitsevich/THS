@@ -1,24 +1,19 @@
 package com.market.ths.order;
 
 import com.market.ths.item.Item;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.IndexColumn;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 @Table(name = "apporder")
 public class Order {
     @Id
@@ -45,5 +40,18 @@ public class Order {
                 ", time='" + time + '\'' +
                 ", items=" + items +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Order order = (Order) o;
+        return id != null && Objects.equals(id, order.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

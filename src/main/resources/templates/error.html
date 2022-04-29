@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/InfoPageStyles.css}" >
+    <title>Error</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+</header>
+
+<p class="errorText">Ошибка!</p>
+
+<p th:if="${timestamp}" class="errorMessage">
+    <b>Occurred:</b> <span th:text="${timestamp}">Timestamp</span>
+</p>
+
+<p th:if="${status}" class="errorMessage">
+    <b>Response Status:</b> <span th:text="${status}">status-code</span> <span
+        th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+</p>
+
+<form th:action="@{/catalog}">
+    <input type="submit" class="customButton" value="На главную">
+</form>
+
+
+</body>
+</html>

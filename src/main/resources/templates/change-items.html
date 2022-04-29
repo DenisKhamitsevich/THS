@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/styles/ItemsPageStyles.css}" href="/static/styles/ItemsPageStyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/ItemsPageStyles.css}">
     <title>Items</title>
 </head>
 <body>
@@ -19,7 +18,7 @@
 <form method="post" th:object="${item}" th:action="@{/saveItem}" enctype="multipart/form-data">
     <input type="file" name="file" accept=".jpg,.png,.jpeg" class="loadImageField" placeholder="Загрузить изображение" required>
     <input type="text" class="addItemField" maxlength="255" th:field="*{title}" placeholder="Название" required>
-    <textarea type="text" id="description" class="addItemField" th:field="*{description}" maxlength="3000" placeholder="Описание" required></textarea>
+    <textarea id="description" class="addItemField" th:field="*{description}" maxlength="3000" placeholder="Описание" required></textarea>
     <input type="number" class="addItemField" placeholder="Цена" th:field="*{price}"  required>
     <input type="submit" class="customButton" value="Сохранить">
 </form>

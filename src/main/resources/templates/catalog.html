@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/styles/CatalogPageStyles.css}" href="../static/styles/CatalogPageStyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/CatalogPageStyles.css}">
     <title>THS-market</title>
 </head>
 <body>
@@ -12,8 +12,8 @@
         <input class="searchField" type="search" name="search" placeholder="Искать в каталоге">
         <input type="submit" class="customButton" value="Поиск">
     </form>
-    <form th:action="@{/account}"class="loginForm">
-        <input type="submit" class="customButton" id="loginButton" value="Войти">
+    <form th:action="@{/account}" class="loginForm">
+        <input type="submit" class="customButton" id="loginButton" value="Мой аккаунт">
     </form>
 </header>
 
@@ -53,9 +53,9 @@
     <form class="filtersForm" th:action="@{/filters}">
         <p class="filtersText">Фильтры</p>
         <label class="priceText">Стоимость:</label>
-        <input type="number" name="min_price"class="filtersItem" placeholder="от">
+        <input type="number" name="min_price" class="filtersItem" placeholder="от">
         <input type="number" name="max_price" class="filtersItem" placeholder="до">
-        <input type="submit"  class="customButton" id="filtersButton"value="Показать">
+        <input type="submit"  class="customButton" id="filtersButton" value="Показать">
     </form>
 
     <div class="items">

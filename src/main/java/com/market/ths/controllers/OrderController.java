@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,8 +18,8 @@ import java.util.Set;
 @RequestMapping("/")
 @SessionAttributes("order")
 public class OrderController {
-    private OrderService orderService;
-    private ItemService itemService;
+    private final OrderService orderService;
+    private final ItemService itemService;
 
     @Autowired
     public OrderController(OrderService orderService,ItemService itemService) {
@@ -57,6 +56,12 @@ public class OrderController {
         return "orders";
     }
 
+    @GetMapping("orderSuccessful")
+    public String successfulOrder()
+    {
+        return "orderSuccessful";
+    }
+
     @PostMapping("addToBasket")
     public String addToBasket(@RequestParam("id") Long itemId, Model model)
     {
@@ -82,9 +87,8 @@ public class OrderController {
         List<Item> items= itemService.getItemsById(ids);
         orderService.saveOrder(items,loggedUser.getId());
         model.addAttribute("order",new HashSet<Long>());
-        return "redirect:catalog";
+        return "redirect:orderSuccessful";
     }
-
 
 
 }

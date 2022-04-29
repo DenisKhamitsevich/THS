@@ -60,3 +60,14 @@ input:hover{
     font-size: 25px;
     margin: 0 20% 0 22%;
 }
+#successfulOrder{
+    margin-left: 25%;
+}
+.errorText{
+    font-size: 35px;
+    margin:1% 0 0 33%;
+}
+.errorMessage{
+    font-size: 25px;
+    margin:3% 0 0 15%;
+}

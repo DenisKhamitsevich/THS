@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Service
 public class ItemService {
-    private ItemRepository itemRepository;
+    private final ItemRepository itemRepository;
 
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
@@ -29,6 +29,7 @@ public class ItemService {
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ioe) {
+            System.out.println("File exception!");
 
         }
         item.setImage("/uploads/"+fileName);
@@ -45,7 +46,7 @@ public class ItemService {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException ioe) {
-
+                System.out.println("File exception!");
             }
             prev.setImage("/uploads/"+fileName);
         }
@@ -67,13 +68,12 @@ public class ItemService {
 
     public List<Item> getItemsById(Set<Long> ids)
     {
-        List<Item> result=itemRepository.findAllById(ids);
-        return result;
+        return itemRepository.findAllById(ids);
     }
 
     public List<Item> getPageOfItems(int from, int amount, HashMap<String,String> filters)
     {
-        List<Item> values=itemRepository.findByPriceBetweenAndTitleContainingIgnoreCase(Double.valueOf(filters.get("minPrice")),
+        List<Item> values=itemRepository.findByPriceBetweenAndTitleContainingIgnoreCaseOrderByIdDesc(Double.valueOf(filters.get("minPrice")),
                 Double.valueOf(filters.get("maxPrice")),filters.get("search"));
         List<Item> result=values.subList(from,Math.min(values.size(),from+amount));
         filters.put("size", String.valueOf(values.size()));

@@ -11,7 +11,7 @@ body {
 }
 h1 {
     font-size: 35px;
-    margin: 1% 15% 1% 1%;
+    margin: 1% 4% 1% 1%;
 }
 
 .h1_market {
@@ -37,16 +37,13 @@ header{
 .customButton:hover{
     opacity:0.7;
 }
-.addItemForm{
-    margin: 2% auto 0 2%;
-    align-content: center;
-}
+
 .logoutForm{
-    margin:2% 3% 0 20%;
+    margin: 2% 2% 0 40%;
 }
 .settingsText{
     font-size: 32px;
-    margin: 1% 0 0 45%;
+    margin: 1% 0 0 36%;
 }
 .settingsItem {
     height: 40px;
@@ -102,4 +99,21 @@ header{
 
 .wrong_set {
     display: inline;
+}
+.flex{
+    display: flex;
+}
+.addItemForm{
+    margin: 2% auto 0 2%;
+    align-content: center;
+}
+#myOrders{
+    margin-left: auto;
+    margin-right: 0;
+}
+#addItemButton{
+    height: 29px;
+}
+.prevPageForm{
+    margin:1% 0 0 2%;
 }

@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}" href="../static/styles/AccountPageStyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}">
     <title>Account</title>
 </head>
 <body>
 <header>
     <h1>THS-<span class="h1_market">market</span></h1>
-    <form  class="addItemForm" th:action="@{/change-items}">
-        <input type="submit" class="customButton" value="Добавить/удалить товар">
+
+    <form  th:if="${user.getRole().toString().equals('ADMIN')}" class="addItemForm" th:action="@{/change-items}">
+        <input type="submit" class="customButton" value="Добавить/удалить товар" id="addItemButton">
     </form>
-    <form class="addItemForm" th:action="@{/allOrders}">
+
+    <form th:if="${user.getRole().toString().equals('ADMIN')}" class="addItemForm" th:action="@{/allOrders}">
         <input type="submit" class="customButton" value="Все заказы">
     </form>
-    <form class="addItemForm" th:action="@{/myOrders}">
+
+    <form  th:action="@{/myOrders}" class="addItemForm" id="myOrders">
         <input type="submit" class="customButton" value="Мои заказы">
     </form>
+
     <form method="post" class="logoutForm" th:action="@{/logout}">
         <input type="submit" class="customButton" value="Выйти" >
     </form>
 </header>
-<p class="settingsText">Настройки</p>
+<div class="flex">
+    <form th:action="@{/catalog}" class="prevPageForm">
+        <input type="submit" value="На главную" class="customButton" id="prevButton">
+    </form>
+    <p class="settingsText">Настройки</p>
+</div>
+
 <form method="post" th:action="@{/account}" th:object="${user}" >
     <p class="settingsItemText">Имя</p>
     <input type="text" class="settingsItem" th:field="*{name}">

@@ -1,16 +1,16 @@
 package com.market.ths.item;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @Entity
 @Table(name = "appitem")
 public class Item {
@@ -39,5 +39,18 @@ public class Item {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Item item = (Item) o;
+        return id != null && Objects.equals(id, item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

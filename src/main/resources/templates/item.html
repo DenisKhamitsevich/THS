@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/styles/ItemPageStyles.css}" href="../static/styles/ItemPageStyles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/ItemPageStyles.css}">
     <title>Item</title>
 </head>
 <body>
 <header>
     <h1>THS-<span class="h1_market">market</span></h1>
-    <form th:action="@{/account}"class="loginForm">
-        <input type="submit" class="customButton" id="loginButton" value="Войти">
+    <form th:action="@{/account}" class="loginForm">
+        <input type="submit" class="customButton" id="loginButton" value="Мой аккаунт">
     </form>
 </header>
 <form th:action="@{/catalog}" class="prevPageForm">

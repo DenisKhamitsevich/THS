@@ -4,38 +4,29 @@ package com.market.ths.controllers;
 import com.market.ths.item.Item;
 import com.market.ths.item.ItemService;
 import com.market.ths.user.User;
-import com.market.ths.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 @SessionAttributes(value = {"page", "filters","order"})
 public class DefaultController {
-    private final UserService userService;
     private final ItemService itemService;
     private final Integer amountOfItemsOnPage = 10;
 
     @Autowired
-    public DefaultController(UserService userService, ItemService itemService) {
-        this.userService = userService;
+    public DefaultController(ItemService itemService) {
         this.itemService = itemService;
     }
 
-    @GetMapping("account")
-    public String getAccount(Model model) {
-        User user = getLoggedUser();
-        user = userService.loadUserById(user.getId());
-        model.addAttribute("user", user);
-        return "account";
-    }
 
     @GetMapping(value = {"", "catalog"})
     public String getMain(Model model) {
@@ -98,75 +89,25 @@ public class DefaultController {
         return "redirect:catalog";
     }
 
-    @GetMapping("item/{itemId}")
-    public String getItem(@PathVariable Long itemId,Model model)
-    {
-        Item item=itemService.getItemById(itemId);
-        model.addAttribute("item",item);
-        return "item";
-    }
-
-
-    @PostMapping("savePassword")
-    public String savePassword(@RequestParam("password") String password) {
-        User loggedUser = getLoggedUser();
-        Long id = loggedUser.getId();
-        userService.updatePassword(id, password);
-        return "redirect:account";
-    }
-
-    @GetMapping("change-items")
-    public String changeItems(Model model) {
-        model.addAttribute("item", new Item());
-        return "change-items";
-    }
 
     @GetMapping("result")
     public String getResult() {
         return "result";
     }
 
-    @PostMapping("saveItem")
-    public String saveItem(@RequestParam MultipartFile file, @ModelAttribute("item") Item item, Model model) {
-        itemService.saveItem(file, item);
-        model.addAttribute("result", "Товар успешно добавлен!");
-        return "result";
-    }
-
-    @PostMapping("changeItem")
-    public String changeItem(@RequestParam MultipartFile file, @ModelAttribute("item") Item item,Model model)
+    @GetMapping("prev")
+    public String getPrev(HttpServletRequest request)
     {
-        itemService.updateItem(file,item);
-        model.addAttribute("item",new Item());
-        return "change-items";
+        String referer = request.getHeader("Referer");
+        return "redirect:"+ referer;
     }
 
-    @PostMapping("deleteItem")
-    public String deleteItem(@RequestParam Long id, Model model) {
-        if (itemService.deleteItem(id))
-            model.addAttribute("result", "Товар успешно удален!");
-        else
-            model.addAttribute("result", "Товара с данным ID не существует!");
-        return "result";
-    }
-
-    @GetMapping("getItem")
-    public String getChangeItemPage(@RequestParam Long id, Model model)
-    {
-        if(itemService.itemExists(id))
-        {
-            Item item=itemService.getItemById(id);
-            model.addAttribute("item",item);
-        }
-        return "modify-item";
-    }
 
     public static User getLoggedUser() {
-        User loggedUser = (User) SecurityContextHolder
+        return (User) SecurityContextHolder
                 .getContext()
                 .getAuthentication()
                 .getPrincipal();
-        return loggedUser;
     }
 
     private void setModelAttributes(Model model) {

@@ -51,12 +51,12 @@ header{
 }
 #loginButton{
     background-color: orange;
-    border-radius: 10px;
-    height: 40px;
+    border-radius: 8px;
+    height: 32px;
     width:100%;
 }
 .loginForm{
-    margin: 1% 5% 0 23%;
+    margin: 1% 5% 0 22%;
 }
 img{
     width: 150px;
@@ -108,7 +108,7 @@ img{
 }
 .navigationButtons{
     display: flex;
-    margin: 3%;
+    margin: 3% 3% 5% 3%;
 }
 input[type=number]::-webkit-inner-spin-button
 {

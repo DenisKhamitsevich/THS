@@ -6,11 +6,10 @@ import org.springframework.stereotype.Service;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class OrderService {
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;

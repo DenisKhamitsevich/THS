@@ -38,6 +38,12 @@ public class AuthenticationController {
         model.addAttribute("userForm", new User());
         return "register";
     }
+    @GetMapping("login-failed")
+    public String getFailedLogin()
+    {
+        return "login-failed";
+    }
+
 
     @PostMapping("register")
     public String Register(@ModelAttribute("userForm") User user)
@@ -45,29 +51,6 @@ public class AuthenticationController {
         user.setRole(UserRole.CUSTOMER);
         userService.signUpUser(user);
         return "successful";
-    }
-
-
-    @ExceptionHandler(RegistrationException.class)
-    public ModelAndView registrationError(HttpServletRequest req, Exception ex) {
-        ModelAndView mav = new ModelAndView();
-        mav.addObject("exception", ex);
-        mav.addObject("url", req.getRequestURL());
-        mav.setViewName("registration-failed");
-        return mav;
-    }
-
-    @GetMapping("login-failed")
-    public String getFailedLogin()
-    {
-        return "login-failed";
-    }
-
-    @GetMapping("prev")
-    public String getPrev(HttpServletRequest request)
-    {
-        String referer = request.getHeader("Referer");
-        return "redirect:"+ referer;
     }
 
     @PostMapping("account")
@@ -78,6 +61,27 @@ public class AuthenticationController {
         userService.updateNameAndEmail(id,user.getEmail(),user.getName());
         return "redirect:account";
     }
+
+    @PostMapping("savePassword")
+    public String savePassword(@RequestParam("password") String password) {
+        User loggedUser = DefaultController.getLoggedUser();
+        Long id = loggedUser.getId();
+        userService.updatePassword(id, password);
+        return "redirect:account";
+    }
+
+    @ExceptionHandler(RegistrationException.class)
+    public ModelAndView registrationError(HttpServletRequest req, Exception ex) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("exception", ex);
+        mav.addObject("url", req.getRequestURL());
+        mav.setViewName("registration-failed");
+        return mav;
+    }
+
+
+
+
 
 
 }

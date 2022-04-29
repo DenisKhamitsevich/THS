@@ -1,5 +1,6 @@
 package com.market.ths.security;
 
+import com.market.ths.user.UserRole;
 import com.market.ths.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -7,12 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.firewall.DefaultHttpFirewall;
-import org.springframework.security.web.firewall.HttpFirewall;
 
 @Configuration
 @EnableWebSecurity
@@ -34,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/register", "/login", "/prev", "/catalog","/uploads/**",
                         "/nextPage","/prevPage","/search","/filters","/clearSearch",
                         "/item/*","/addToBasket","/deleteFromBasket").permitAll()
+                .antMatchers("/change-items","/getItem","/allOrders").hasRole(UserRole.ADMIN.name())
                 .anyRequest()
                 .authenticated().and()
                 .formLogin()
@@ -45,8 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
-
-
     }
 
     @Override
