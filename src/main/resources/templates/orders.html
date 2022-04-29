@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/styles/OrdersPageStyles.css}" href="../static/styles/OrdersPageStyles.css">
+    <title>Orders</title>
+</head>
+<body>
+<header>
+    <h1>THS-<span class="h1_market">market</span></h1>
+</header>
+<div class="flex">
+    <form th:action="@{/account}" class="prevPageForm">
+        <input type="submit" value="Назад" class="customButton">
+    </form>
+    <div class="ordersText" th:if="${type=='all'}" >
+        <p>Все заказы</p>
+    </div>
+    <div class="ordersText" th:if="${type=='my'}" >
+        <p>Мои заказы</p>
+    </div>
+</div>
+
+<div class="items">
+    <div th:if="${values.empty}" >
+        <p class="noItemsText">Нет заказов!</p>
+    </div>
+
+    <div class="item" th:each="order : ${values}">
+        <div class="orderID"><span  th:text="'ID заказа:'+${order.id}"> ID заказа </span></div>
+        <div class="ordersUserID" th:if="${type=='all'}" >
+            <span th:text="'ID пользователя:'+${order.userID}">User ID</span>
+        </div>
+        <div class="orderTime"><span  th:text="'Время заказа:'+${order.time}"> Время заказа </span></div>
+        <p class="itemsText">Товары:</p>
+        <div th:each="item:${order.items}">
+            <div class="itemValue">
+                <div class="itemTitle"><span  th:text="${item.title}"> title </span></div>
+                <div><img th:src="${item.image}"></div>
+                <div class="itemField"><span th:text="'ID товара:'+${item.id}">id товара</span></div>
+                <div  class="itemField"><span th:text="'Описание:'+${item.description}"> description </span></div>
+                <div class="itemField"><span  th:text="'Цена:'+${item.price}"> price </span></div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

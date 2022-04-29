@@ -2,6 +2,7 @@ package com.market.ths.controllers;
 
 import com.market.ths.item.Item;
 import com.market.ths.item.ItemService;
+import com.market.ths.order.Order;
 import com.market.ths.order.OrderService;
 import com.market.ths.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,25 @@ public class OrderController {
         model.addAttribute("price",price);
         model.addAttribute("items",result);
         return "basket";
+    }
+
+    @GetMapping("allOrders")
+    public String getAllOrders(Model model)
+    {
+       List<Order> orders=orderService.findAll();
+       model.addAttribute("values",orders);
+       model.addAttribute("type","all");
+        return "orders";
+    }
+
+    @GetMapping("myOrders")
+    public String getMyOrders(Model model)
+    {
+        User user=DefaultController.getLoggedUser();
+        List<Order> orders=orderService.findByUserId(user.getId());
+        model.addAttribute("values",orders);
+        model.addAttribute("type","my");
+        return "orders";
     }
 
     @PostMapping("addToBasket")

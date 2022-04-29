@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}" >
+    <link rel="stylesheet" th:href="@{/styles/AccountPageStyles.css}" href="../static/styles/AccountPageStyles.css">
     <title>Account</title>
 </head>
 <body>
@@ -11,6 +11,12 @@
     <h1>THS-<span class="h1_market">market</span></h1>
     <form  class="addItemForm" th:action="@{/change-items}">
         <input type="submit" class="customButton" value="Добавить/удалить товар">
+    </form>
+    <form class="addItemForm" th:action="@{/allOrders}">
+        <input type="submit" class="customButton" value="Все заказы">
+    </form>
+    <form class="addItemForm" th:action="@{/myOrders}">
+        <input type="submit" class="customButton" value="Мои заказы">
     </form>
     <form method="post" class="logoutForm" th:action="@{/logout}">
         <input type="submit" class="customButton" value="Выйти" >
